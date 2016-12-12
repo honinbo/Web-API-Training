@@ -1,0 +1,22 @@
+﻿<CodeSnippets  
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">  
+    <CodeSnippet Format="1.0.0">  
+        <Header>  
+            <Title>ApiKeyMessageHandler Snippet</Title>  
+        </Header>  
+        <Snippet>  
+            <Code Language="CSharp">  
+                <![CDATA[string apikey = HttpUtility.ParseQueryString(request.RequestUri.Query).Get("apikey");
+            if (string.IsNullOrWhiteSpace(apikey))
+            {
+                var newresponse = request.CreateResponse(HttpStatusCode.Unauthorized, new { reason = "You can't use the API without the key." });
+                return new System.Web.Http.Results.ResponseMessageResult(newresponse).ExecuteAsync(cancellationToken);
+            }
+            else
+            {
+                return base.SendAsync(request, cancellationToken);
+            }]]>  
+            </Code>  
+        </Snippet>  
+    </CodeSnippet>  
+</CodeSnippets>  
